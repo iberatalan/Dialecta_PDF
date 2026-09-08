@@ -55,3 +55,7 @@ denetim_kayitlari.jsonl
 
 # Local shortcuts
 *.lnk
+
+# Release Outputs
+*.zip
+DialectaPDF_Release/
