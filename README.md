@@ -1,4 +1,4 @@
-# Dialecta PDF
+﻿# Dialecta PDF
 
 PDF dosyalarını birleştirmek, ayırmak veya sıkıştırmak istediğinizde muhtemelen ilk aklınıza gelen şey ILovePDF gibi çevrimiçi araçlar oluyor. Ama bir an durup düşünün: banka ekstrelerinizi, kimlik fotokopilerinizi veya şirket sözleşmelerinizi gerçekten tanımadığınız bir sunucuya yüklemek ister misiniz?
 
@@ -21,52 +21,52 @@ Eğer kaynak koddan kendiniz derlemek isterseniz, sayfanın alt kısmındaki [Ku
 ### PDF Birleştirme
 Birden fazla PDF dosyasını sürükleyip bırakarak istediğiniz sırayla tek bir belgede birleştirin.
 
-![Birleştirme](ss_birlestir.png)
+![Birleştirme](.github/images/ss_birlestir.png)
 
 ### PDF Ayırma
 Bir belgeyi sayfa aralıklarına göre parçalara bölün ya da her sayfayı ayrı bir dosya olarak kaydedin.
 
-![Ayırma](ss_ayir.png)
+![Ayırma](.github/images/ss_ayir.png)
 
 ### Sayfa Düzenleme ve Döndürme
 Sayfaları görsel ızgara üzerinde sürükleyerek yeniden sıralayın, döndürün veya istemediğiniz sayfaları çıkarın.
 
-![Düzenleme](ss_duzenle.png)
+![Düzenleme](.github/images/ss_duzenle.png)
 
 ### Görüntüden PDF Oluşturma
 JPEG veya PNG dosyalarınızı seçin, tek tıkla PDF'e dönüştürün.
 
-![Görüntüden PDF](ss_resim_pdf.png)
+![Görüntüden PDF](.github/images/ss_resim_pdf.png)
 
 ### PDF Sıkıştırma
 Dosya boyutunu düşük, orta veya yüksek sıkıştırma seviyeleriyle küçültün. E-postayla gönderilemeyecek kadar büyük belgeler için ideal.
 
-![Sıkıştırma](ss_sikistir.png)
+![Sıkıştırma](.github/images/ss_sikistir.png)
 
 ### Filigran Ekleme
 Sayfalarınıza metin veya logo filigranı ekleyin. Saydamlık, açı ve konum ayarlarını kendiniz belirleyin.
 
-![Filigran](ss_filigran.png)
+![Filigran](.github/images/ss_filigran.png)
 
 ### Hassas Veri Karartma
 TCKN, telefon numarası veya istediğiniz herhangi bir anahtar kelimeyi belgede kalıcı olarak karartın. Karartılan veriler geri getirilemez.
 
-![Karartma](ss_karartma.png)
+![Karartma](.github/images/ss_karartma.png)
 
 ### Yerel OCR (Metin Tanıma)
 Taranmış belgelerden veya görsellerden metin çıkarın. Dahili Tesseract motoru Türkçe ve İngilizce destekler. İnternet bağlantısı gerekmez, her şey bilgisayarınızda işlenir.
 
-![OCR](ss_ocr.png)
+![OCR](.github/images/ss_ocr.png)
 
 ### Dijital Mühür ve İmza
 Belgelerinize görsel imza veya kaşe ekleyin. Uygulama arka planda SHA-256 özeti oluşturarak belgenin değiştirilip değiştirilmediğini doğrulamanıza olanak tanır.
 
-![İmza](ss_imza.png)
+![İmza](.github/images/ss_imza.png)
 
 ### Denetim Günlüğü ve Yedekleme
 Yaptığınız tüm işlemler zaman damgasıyla birlikte kayıt altına alınır. Tüm verilerinizi tek tıkla ZIP olarak yedekleyebilirsiniz.
 
-![Denetim](ss_denetim.png)
+![Denetim](.github/images/ss_denetim.png)
 
 ---
 
