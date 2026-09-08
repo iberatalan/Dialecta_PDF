@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <UserControl x:Class="PdfMaster.Views.OrganizeView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -133,7 +133,7 @@
                     <Button Content="Tümünü Döndür" Command="{Binding RotateAllCommand}"   Style="{StaticResource ModernBtnSecondary}" Margin="0,0,0,4" HorizontalAlignment="Stretch" />
 
                     <Border BorderBrush="#0DFFFFFF" BorderThickness="0,1,0,0" Margin="0,8,0,10" />
-                    <TextBlock Text="SİPARİŞ" FontFamily="Inter, Segoe UI Variable, Segoe UI"
+                    <TextBlock Text="SIRALAMA" FontFamily="Inter, Segoe UI Variable, Segoe UI"
                                FontSize="11" FontWeight="Bold" Foreground="{StaticResource TextMutedBrush}" Margin="0,0,0,8" />
                     <Button Content="Sola Taşı"  Command="{Binding MovePageLeftCommand}"  Style="{StaticResource ModernBtnSecondary}" Margin="0,0,0,4" HorizontalAlignment="Stretch" />
                     <Button Content="Sağa Taşı"  Command="{Binding MovePageRightCommand}" Style="{StaticResource ModernBtnSecondary}" Margin="0,0,0,16" HorizontalAlignment="Stretch" />
