@@ -1,4 +1,4 @@
-﻿# Dialecta PDF
+# Dialecta PDF
 
 PDF dosyalarını birleştirmek, ayırmak veya sıkıştırmak istediğinizde muhtemelen ilk aklınıza gelen şey ILovePDF gibi çevrimiçi araçlar oluyor. Ama bir an durup düşünün: banka ekstrelerinizi, kimlik fotokopilerinizi veya şirket sözleşmelerinizi gerçekten tanımadığınız bir sunucuya yüklemek ister misiniz?
 
@@ -11,6 +11,8 @@ Kaynak kodun tamamı bu depoda yer alıyor. Arka planda ne döndüğünü merak 
 ## Nasıl kullanırım?
 
 Uygulamayı kullanmak için herhangi bir kurulum yapmanıza gerek yok. Bu sayfanın sağ tarafındaki **Releases** bölümünden en güncel sürümü `.zip` olarak indirin, arşivi açın ve içindeki `DialectaPDF.exe` dosyasını çalıştırın. Hepsi bu kadar.
+
+![Releases İndirme](.github/images/ss_nasil_indirilir.png)
 
 Eğer kaynak koddan kendiniz derlemek isterseniz, sayfanın alt kısmındaki [Kurulum ve derleme](#kurulum-ve-derleme) bölümüne bakabilirsiniz.
 
