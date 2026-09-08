@@ -1,3 +1,0 @@
-﻿@echo off
-echo Dialecta PDF derleniyor ve baslatiliyor, lutfen bekleyin...
-dotnet run --project PdfMaster -c Release
