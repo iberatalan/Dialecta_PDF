@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="PdfMaster.Views.CompressView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             AllowDrop="True" Drop="UserControl_Drop" DragOver="UserControl_DragOver">
+    <Grid Margin="32,24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="PDF Sıkıştır"
+                       FontFamily="Inter, Segoe UI Variable, Segoe UI"
+                       FontSize="22" FontWeight="SemiBold"
+                       Foreground="{StaticResource TextPrimaryBrush}" />
+            <TextBlock Text="Dosya boyutunu yerel akış optimizasyonu ile küçültün."
+                       FontFamily="Inter, Segoe UI Variable, Segoe UI"
+                       FontSize="13" Foreground="{StaticResource TextMutedBrush}" Margin="0,4,0,0" />
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="280" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Background="{StaticResource BgCardBrush}"
+                    BorderBrush="#0DFFFFFF" BorderThickness="1" CornerRadius="8"
+                    Padding="16" Margin="0,0,16,0">
+                <Grid>
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding FileSizeText}" Value="">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <Grid>
+                            <Rectangle RadiusX="8" RadiusY="8" Stroke="#1AFFFFFF" StrokeThickness="1.5"
+                                       StrokeDashArray="6,4" IsHitTestVisible="False" />
+                            <StackPanel HorizontalAlignment="Center" Margin="48,32">
+                                <TextBlock Text="Sıkıştırılacak PDF dosyasını sürükleyin"
+                                           FontFamily="Inter, Segoe UI Variable, Segoe UI"
+                                           FontSize="14" Foreground="{StaticResource TextSecondaryBrush}"
+                                           HorizontalAlignment="Center" Margin="0,0,0,16" />
+                                <Button Content="Dosya Seç" Command="{Binding SelectFileCommand}"
+                                        Style="{StaticResource ModernBtnPrimary}" HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Visible" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding FileSizeText}" Value="">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <TextBlock Text="{Binding SelectedFileName}"
+                                   FontFamily="Inter, Segoe UI Variable, Segoe UI"
+                                   FontSize="14" FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimaryBrush}"
+                                   HorizontalAlignment="Center" TextTrimming="CharacterEllipsis" MaxWidth="400" />
+                        <TextBlock Text="{Binding FileSizeText, StringFormat='{}Boyut: {0}'}"
+                                   FontFamily="Inter, Segoe UI Variable, Segoe UI"
+                                   FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"
+                                   HorizontalAlignment="Center" Margin="0,6,0,20" />
+                        <Button Content="Farklı Dosya Seç" Command="{Binding SelectFileCommand}"
+                                Style="{StaticResource ModernBtnSecondary}" HorizontalAlignment="Center" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="1" Background="{StaticResource BgCardBrush}"
+                    BorderBrush="#0DFFFFFF" BorderThickness="1" CornerRadius="8" Padding="16">
+                <StackPanel>
+                    <TextBlock Text="SIKIŞTURMA SEVİYESİ"
+                               FontFamily="Inter, Segoe UI Variable, Segoe UI"
+                               FontSize="11" FontWeight="Bold" Foreground="{StaticResource TextMutedBrush}" Margin="0,0,0,14" />
+
+                    <RadioButton GroupName="CompPresetGroup" Content="Düşük (Yüksek kalite)"  IsChecked="{Binding IsLowSelected}"    Margin="0,0,0,6" />
+                    <RadioButton GroupName="CompPresetGroup" Content="Orta (Önerilen)"         IsChecked="{Binding IsMediumSelected}" Margin="0,0,0,6" />
+                    <RadioButton GroupName="CompPresetGroup" Content="Yüksek (Küçük dosya)"    IsChecked="{Binding IsHighSelected}"   Margin="0,0,0,18" />
+                    <CheckBox Content="FlateDecode akış optimizasyonu" IsChecked="{Binding CompressStreams}" Margin="0,0,0,24" />
+
+                    <Border BorderBrush="#0DFFFFFF" BorderThickness="0,1,0,0" Margin="0,0,0,16" />
+                    <Button Content="Dosyayı Kapat" Command="{Binding CloseFileCommand}"  Style="{StaticResource ModernBtnSecondary}" Margin="0,0,0,4" HorizontalAlignment="Stretch" />
+                    <Button Content="Sıkıştır"      Command="{Binding CompressCommand}"   Style="{StaticResource ModernBtnPrimary}"   HorizontalAlignment="Stretch" Height="40" />
+
+                    <ProgressBar Height="3" IsIndeterminate="True" Margin="0,12,0,0">
+                        <ProgressBar.Style>
+                            <Style TargetType="ProgressBar">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsBusy}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ProgressBar.Style>
+                    </ProgressBar>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="2" Margin="0,14,0,0" BorderBrush="#0DFFFFFF" BorderThickness="0,1,0,0" Padding="0,10,0,0">
+            <DockPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                    <Button Content="Dosyayı Aç"     Command="{Binding OpenOutputFileCommand}"   Style="{StaticResource ModernBtnSecondary}" Margin="0,0,6,0" />
+                    <Button Content="Klasörde Göster" Command="{Binding OpenOutputFolderCommand}" Style="{StaticResource ModernBtnSecondary}" />
+                </StackPanel>
+                <TextBlock Text="{Binding StatusMessage, FallbackValue='Sıkıştırmak için bir PDF seçin.'}"
+                           FontFamily="Inter, Segoe UI Variable, Segoe UI"
+                           FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"
+                           VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+            </DockPanel>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,57 @@
+# .NET / Visual Studio
+bin/
+obj/
+publish/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]uild/
+bld/
+
+# NuGet
+*.nupkg
+**/packages/*
+*.nuget.props
+*.nuget.targets
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Application runtime data (generated at runtime)
+*_Veri/
+DialectaPDF_Veri/
+PdfMaster_Veri/
+hata_kaydi.log
+denetim_kayitlari.jsonl
+
+# Large binaries / installers
+*.exe
+!PdfMaster/Assets/Ghostscript/gsdll64.dll
+
+# Publish outputs
+*.pdb
+
+# IDE
+.idea/
+*.swp
+*~
+
+# Rider
+.idea/
+
+# JetBrains
+*.DotSettings.user
+
+# Local shortcuts
+*.lnk

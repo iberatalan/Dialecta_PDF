@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="PdfMaster.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="clr-namespace:PdfMaster.Views"
+        xmlns:vm="clr-namespace:PdfMaster.ViewModels"
+        Title="Dialecta PDF"
+        Icon="/Assets/logo.png"
+        Height="780" Width="1200" MinHeight="600" MinWidth="960"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BgPrimaryBrush}">
+
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0"
+                Background="{StaticResource BgSidebarBrush}"
+                BorderBrush="#0DFFFFFF"
+                BorderThickness="0,0,1,0">
+            <DockPanel Margin="12,20,12,12">
+                <Grid DockPanel.Dock="Top" Margin="12,0,0,24" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border Width="48" Height="48" Margin="0,0,12,0" CornerRadius="14">
+                            <Border.Background>
+                                <ImageBrush ImageSource="pack://application:,,,/Assets/logo.png" 
+                                            Stretch="Uniform" 
+                                            RenderOptions.BitmapScalingMode="HighQuality" />
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="Dialecta PDF"
+                                   FontFamily="Inter, Segoe UI Variable, Segoe UI"
+                                   FontSize="20" FontWeight="Bold"
+                                   Foreground="{StaticResource TextPrimaryBrush}"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                </Grid>
+                <Border DockPanel.Dock="Bottom"
+                        BorderBrush="#0DFFFFFF"
+                        BorderThickness="0,1,0,0"
+                        Padding="8,10,8,4"
+                        Margin="0,8,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Hazırlayan İsmail Berat Alan"
+                                   FontSize="11"
+                                   Foreground="{StaticResource TextMutedBrush}"
+                                   FontFamily="Inter, Segoe UI Variable, Segoe UI" />
+                    </StackPanel>
+                </Border>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel>
+                        <TextBlock Text="PDF ARAÇLARI"
+                                   FontFamily="Inter, Segoe UI Variable, Segoe UI"
+                                   FontSize="11" FontWeight="Bold"
+                                   Foreground="{StaticResource TextMutedBrush}"
+                                   Margin="16,0,0,6" />
+
+                        <RadioButton Content="Birleştir"
+                                     Style="{StaticResource NavBtnStyle}"
+                                     IsChecked="{Binding IsMergeSelected}"
+                                     Command="{Binding NavigateCommand}"
+                                     CommandParameter="Merge" />
+                        <RadioButton Content="Ayır"
+                                     Style="{StaticResource NavBtnStyle}"
+                                     IsChecked="{Binding IsSplitSelected}"
+                                     Command="{Binding NavigateCommand}"
+                                     CommandParameter="Split" />
+                        <RadioButton Content="Düzenle / Döndür"
+                                     Style="{StaticResource NavBtnStyle}"
+                                     IsChecked="{Binding IsOrganizeSelected}"
+                                     Command="{Binding NavigateCommand}"
+                                     CommandParameter="Organize" />
+                        <RadioButton Content="Sıkıştır"
+                                     Style="{StaticResource NavBtnStyle}"
+                                     IsChecked="{Binding IsCompressSelected}"
+                                     Command="{Binding NavigateCommand}"
+                                     CommandParameter="Compress" />
+                        <RadioButton Content="Filigran"
+                                     Style="{StaticResource NavBtnStyle}"
+                                     IsChecked="{Binding IsWatermarkSelected}"
+                                     Command="{Binding NavigateCommand}"
+                                     CommandParameter="Watermark" />
+                        <RadioButton Content="Karartma (Redaksiyon)"
+                                     Style="{StaticResource NavBtnStyle}"
+                                     IsChecked="{Binding IsRedactSelected}"
+                                     Command="{Binding NavigateCommand}"
+                                     CommandParameter="Redact" />
+                        <RadioButton Content="OCR (Metin Tanıma)"
+                                     Style="{StaticResource NavBtnStyle}"
+                                     IsChecked="{Binding IsOcrSelected}"
+                                     Command="{Binding NavigateCommand}"
+                                     CommandParameter="Ocr" />
+                        <RadioButton Content="İmza / Mühür"
+                                     Style="{StaticResource NavBtnStyle}"
+                                     IsChecked="{Binding IsSignSelected}"
+                                     Command="{Binding NavigateCommand}"
+                                     CommandParameter="Sign" />
+                        <RadioButton Content="Görsel → PDF"
+                                     Style="{StaticResource NavBtnStyle}"
+                                     IsChecked="{Binding IsImageToPdfSelected}"
+                                     Command="{Binding NavigateCommand}"
+                                     CommandParameter="ImageToPdf" />
+                        <TextBlock Text="SİSTEM"
+                                   FontFamily="Inter, Segoe UI Variable, Segoe UI"
+                                   FontSize="11" FontWeight="Bold"
+                                   Foreground="{StaticResource TextMutedBrush}"
+                                   Margin="16,20,0,6" />
+
+                        <RadioButton Content="Denetim Günlüğü"
+                                     Style="{StaticResource NavBtnStyle}"
+                                     IsChecked="{Binding IsAuditSelected}"
+                                     Command="{Binding NavigateCommand}"
+                                     CommandParameter="Audit" />
+                    </StackPanel>
+                </ScrollViewer>
+            </DockPanel>
+        </Border>
+        <Grid Grid.Column="1">
+            <views:MergeView      DataContext="{Binding MergeVM}"      Visibility="{Binding DataContext.IsMergeSelected,      RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BoolToVis}}" />
+            <views:SplitView      DataContext="{Binding SplitVM}"      Visibility="{Binding DataContext.IsSplitSelected,      RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BoolToVis}}" />
+            <views:OrganizeView   DataContext="{Binding OrganizeVM}"   Visibility="{Binding DataContext.IsOrganizeSelected,   RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BoolToVis}}" />
+            <views:CompressView   DataContext="{Binding CompressVM}"   Visibility="{Binding DataContext.IsCompressSelected,   RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BoolToVis}}" />
+            <views:WatermarkView  DataContext="{Binding WatermarkVM}"  Visibility="{Binding DataContext.IsWatermarkSelected,  RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BoolToVis}}" />
+            <views:RedactView     DataContext="{Binding RedactVM}"     Visibility="{Binding DataContext.IsRedactSelected,     RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BoolToVis}}" />
+            <views:OcrView        DataContext="{Binding OcrVM}"        Visibility="{Binding DataContext.IsOcrSelected,        RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BoolToVis}}" />
+            <views:SignView       DataContext="{Binding SignVM}"        Visibility="{Binding DataContext.IsSignSelected,       RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BoolToVis}}" />
+            <views:ImageToPdfView DataContext="{Binding ImageToPdfVM}" Visibility="{Binding DataContext.IsImageToPdfSelected, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BoolToVis}}" />
+            <views:AuditView      DataContext="{Binding AuditVM}"      Visibility="{Binding DataContext.IsAuditSelected,      RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BoolToVis}}" />
+        </Grid>
+    </Grid>
+</Window>

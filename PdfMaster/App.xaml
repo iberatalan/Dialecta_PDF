@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application x:Class="PdfMaster.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <!--
+            Dialecta PDF â€” Design System v2
+            Corporate Modern Â· WinUI 3 Fluent inspired
+            Dark charcoal base Â· Windows Blue primary Â· Precise 4px grid
+        -->
+        <SolidColorBrush x:Key="BgPrimaryBrush"    Color="#131313" />   <!-- Level 0: window canvas -->
+        <SolidColorBrush x:Key="BgSidebarBrush"     Color="#1B1B1C" />   <!-- Level 1: sidebar surface -->
+        <SolidColorBrush x:Key="BgCardBrush"         Color="#1E1E1E" />   <!-- Level 2: card / work area -->
+        <SolidColorBrush x:Key="BgInputBrush"        Color="#252525" />   <!-- Input fields, inner surfaces -->
+        <SolidColorBrush x:Key="BgHoverBrush"        Color="#2A2A2A" />   <!-- Hover state -->
+        <SolidColorBrush x:Key="SurfaceBrightBrush"  Color="#393939" />   <!-- Elevated surface -->
+        <SolidColorBrush x:Key="BorderDefaultBrush"  Color="#1A1A1A" />   <!-- #FFFFFF at ~5% -->
+        <SolidColorBrush x:Key="BorderFocusBrush"    Color="#0078D4" />   <!-- Windows Blue on focus -->
+        <SolidColorBrush x:Key="BorderSubtleBrush"   Color="#404752" />   <!-- outline-variant -->
+        <SolidColorBrush x:Key="AccentBrush"         Color="#0078D4" />
+        <SolidColorBrush x:Key="AccentHoverBrush"    Color="#1A86D8" />   <!-- +10% brightness -->
+        <SolidColorBrush x:Key="AccentPressedBrush"  Color="#006CBD" />
+        <SolidColorBrush x:Key="NavSelectedBgBrush"  Color="#2D3E50" />   <!-- Soft Navy -->
+        <SolidColorBrush x:Key="TextPrimaryBrush"    Color="#E5E2E1" />   <!-- on-surface -->
+        <SolidColorBrush x:Key="TextSecondaryBrush"  Color="#C0C7D4" />   <!-- on-surface-variant -->
+        <SolidColorBrush x:Key="TextMutedBrush"      Color="#8A919E" />   <!-- outline -->
+        <SolidColorBrush x:Key="DangerBrush"         Color="#C42B1C" />   <!-- reserved semantic red -->
+        <SolidColorBrush x:Key="DangerHoverBrush"    Color="#D13220" />
+        <SolidColorBrush x:Key="SuccessBrush"        Color="#16A34A" />
+        <SolidColorBrush x:Key="WarningBrush"        Color="#D97706" />
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+
+        <!-- â•â•â• PRIMARY BUTTON â•â•â•
+             Solid Windows Blue Â· 8px radius Â· hover +10% brightness -->
+        <Style x:Key="ModernBtnPrimary" TargetType="Button">
+            <Setter Property="Background"      Value="{StaticResource AccentBrush}" />
+            <Setter Property="Foreground"       Value="#FFFFFF" />
+            <Setter Property="FontFamily"       Value="Inter, Segoe UI Variable, Segoe UI" />
+            <Setter Property="FontSize"         Value="13" />
+            <Setter Property="FontWeight"       Value="SemiBold" />
+            <Setter Property="Padding"          Value="18,8" />
+            <Setter Property="Cursor"           Value="Hand" />
+            <Setter Property="BorderThickness"  Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd" Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="{StaticResource AccentHoverBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="{StaticResource AccentPressedBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="bd" Property="Opacity" Value="0.4" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- â•â•â• SECONDARY / GHOST BUTTON â•â•â•
+             No fill Â· 1px #FFFFFF15 border Â· white text -->
+        <Style x:Key="ModernBtnSecondary" TargetType="Button">
+            <Setter Property="Background"      Value="Transparent" />
+            <Setter Property="Foreground"       Value="{StaticResource TextSecondaryBrush}" />
+            <Setter Property="FontFamily"       Value="Inter, Segoe UI Variable, Segoe UI" />
+            <Setter Property="FontSize"         Value="12" />
+            <Setter Property="FontWeight"       Value="Normal" />
+            <Setter Property="Padding"          Value="14,7" />
+            <Setter Property="Cursor"           Value="Hand" />
+            <Setter Property="BorderThickness"  Value="1" />
+            <Setter Property="BorderBrush"      Value="#26FFFFFF" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd" Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="{StaticResource BgHoverBrush}" />
+                                <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="{StaticResource BgInputBrush}" />
+                                <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="bd" Property="Opacity" Value="0.4" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- â•â•â• DANGER BUTTON â•â•â•
+             Solid #C42B1C Â· reserved for destructive actions only -->
+        <Style x:Key="ModernBtnDanger" TargetType="Button">
+            <Setter Property="Background"      Value="{StaticResource DangerBrush}" />
+            <Setter Property="Foreground"       Value="#FFFFFF" />
+            <Setter Property="FontFamily"       Value="Inter, Segoe UI Variable, Segoe UI" />
+            <Setter Property="FontSize"         Value="12" />
+            <Setter Property="FontWeight"       Value="Normal" />
+            <Setter Property="Padding"          Value="14,7" />
+            <Setter Property="Cursor"           Value="Hand" />
+            <Setter Property="BorderThickness"  Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd" Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="{StaticResource DangerHoverBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#A82318" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- â•â•â• SIDEBAR NAV BUTTON â•â•â•
+             40px height Â· left accent pill (4px, #0078D4) on selected
+             Selected bg: Soft Navy (#2D3E50) Â· no font-weight shift -->
+        <Style x:Key="NavBtnStyle" TargetType="RadioButton">
+            <Setter Property="Foreground"       Value="{StaticResource TextSecondaryBrush}" />
+            <Setter Property="FontFamily"       Value="Inter, Segoe UI Variable, Segoe UI" />
+            <Setter Property="FontSize"         Value="13" />
+            <Setter Property="FontWeight"       Value="Normal" />
+            <Setter Property="Cursor"           Value="Hand" />
+            <Setter Property="Margin"           Value="0,1" />
+            <Setter Property="Height"           Value="40" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="bd" Background="Transparent" CornerRadius="8" Padding="12,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4" />
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Border x:Name="indicator" Grid.Column="0"
+                                        Background="Transparent" CornerRadius="2"
+                                        Width="4" VerticalAlignment="Stretch" Margin="0,8" />
+                                <ContentPresenter Grid.Column="2"
+                                                  HorizontalAlignment="Left"
+                                                  VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="{StaticResource BgHoverBrush}" />
+                                <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="{StaticResource NavSelectedBgBrush}" />
+                                <Setter TargetName="indicator" Property="Background" Value="{StaticResource AccentBrush}" />
+                                <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- â•â•â• TEXTBOX â•â•â•
+             #252525 bg Â· bottom-accented blue on focus Â· 36px standard height -->
+        <Style TargetType="TextBox">
+            <Setter Property="Background"      Value="{StaticResource BgInputBrush}" />
+            <Setter Property="Foreground"       Value="{StaticResource TextPrimaryBrush}" />
+            <Setter Property="CaretBrush"       Value="{StaticResource TextPrimaryBrush}" />
+            <Setter Property="BorderBrush"      Value="{StaticResource BorderSubtleBrush}" />
+            <Setter Property="BorderThickness"  Value="1" />
+            <Setter Property="Padding"          Value="8,6" />
+            <Setter Property="Height"           Value="36" />
+            <Setter Property="FontSize"         Value="13" />
+            <Setter Property="FontFamily"       Value="Inter, Segoe UI Variable, Segoe UI" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="bd" Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="2" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="bd" Property="BorderBrush" Value="{StaticResource BorderFocusBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Foreground"       Value="Black" />
+            <Setter Property="BorderBrush"      Value="{StaticResource BorderSubtleBrush}" />
+            <Setter Property="BorderThickness"  Value="1" />
+            <Setter Property="Padding"          Value="8,6" />
+            <Setter Property="Height"           Value="30" />
+            <Setter Property="FontSize"         Value="13" />
+            <Setter Property="FontFamily"       Value="Inter, Segoe UI Variable, Segoe UI" />
+        </Style>
+        <Style TargetType="ComboBoxItem">
+            <Setter Property="Foreground"       Value="Black" />
+        </Style>
+        <Style TargetType="CheckBox">
+            <Setter Property="Foreground"   Value="{StaticResource TextSecondaryBrush}" />
+            <Setter Property="FontSize"     Value="13" />
+            <Setter Property="FontFamily"   Value="Inter, Segoe UI Variable, Segoe UI" />
+            <Setter Property="Cursor"       Value="Hand" />
+            <Setter Property="Margin"       Value="0,4" />
+        </Style>
+        <Style TargetType="RadioButton">
+            <Setter Property="Foreground"   Value="{StaticResource TextSecondaryBrush}" />
+            <Setter Property="FontSize"     Value="13" />
+            <Setter Property="FontFamily"   Value="Inter, Segoe UI Variable, Segoe UI" />
+            <Setter Property="Cursor"       Value="Hand" />
+            <Setter Property="Margin"       Value="0,4" />
+        </Style>
+        <Style TargetType="Slider">
+            <Setter Property="Margin" Value="0,4" />
+        </Style>
+        <Style TargetType="ScrollBar">
+            <Setter Property="Background" Value="Transparent" />
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Vertical">
+                    <Setter Property="Width" Value="8" />
+                </Trigger>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="Height" Value="8" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="ProgressBar">
+            <Setter Property="Background"   Value="{StaticResource BgInputBrush}" />
+            <Setter Property="Foreground"   Value="{StaticResource AccentBrush}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Height"       Value="3" />
+        </Style>
+
+    </Application.Resources>
+</Application>
