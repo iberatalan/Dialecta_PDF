@@ -36,7 +36,7 @@ Sayfaları görsel ızgara üzerinde sürükleyerek yeniden sıralayın, döndü
 ![Düzenleme](.github/images/ss_duzenle.png)
 
 ### Görüntüden PDF Oluşturma
-JPEG veya PNG dosyalarınızı seçin, tek tıkla PDF'e dönüştürün.
+Görsel dosyalarınızı seçin, tek tıkla PDF'e dönüştürün.
 
 ![Görüntüden PDF](.github/images/ss_resim_pdf.png)
 
